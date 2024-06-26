@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 // used to parse req.body  in express PUT or POST
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 // specifically parse the JSON data and & it to the request.body object
 app.use(bodyParser.json());
@@ -24,3 +24,15 @@ app.post("/api/cars", (req, res) => {
   console.log(brand);
   res.send("Car submitted successfully");
 });
+
+// ------------------------------------------------------------------------
+// Connecting MongoDB & Node/express
+const mongoose = require("mongoose");
+
+mongoose
+  .connect("mongodb://localhost:27017/Cars", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connection successful"))
+  .catch((e) => console.log("Received an error"));
