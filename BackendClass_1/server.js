@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 
+// used to parse req.body  in express PUT or POST
+const bodyParser = require('body-parser');
+
+// specifically parse the JSON data and & it to the request.body object
+app.use(bodyParser.json());
 
 // server instantiated | To run:  node server.js
 app.listen(3000, () => {
