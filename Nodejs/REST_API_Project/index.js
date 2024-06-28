@@ -2,9 +2,32 @@ const express = require("express");
 const app = express();
 const users = require("./MOCK_DATA.json");
 const fs = require("fs");
+const mongoose = require("mongoose");
 
 const PORT = 3000;
 app.use(express.urlencoded({ extended: false })); //added middleware
+
+//Schema
+const userSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true,
+    trim: true, // Remove leading/trailing whitespace
+  },
+  lastName: {
+    type: String,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true, // Convert email to lowercase for case-insensitive comparison
+  },
+  gender: {
+    type: String,
+  },
+});
 
 // GET /users => HTML Document render (for browser)
 // Server Side Rendering
@@ -68,7 +91,7 @@ app.delete("/api/users/:id", (req, res) => {
   // Remove user from the array
   users.splice(userIndex, 1);
 
-//   Updated data in MOCK_DATA.json
+  //   Updated data in MOCK_DATA.json
   fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
     return res.json({ message: "User deleted successfully" });
   });
