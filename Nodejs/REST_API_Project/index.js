@@ -15,10 +15,18 @@ app.get("/users", (req, res) => {
   res.send(html);
 });
 
+// -----------------------------------------------------------------------------------------
 // GET /api/users => List all users (for mobile)
 // Client Side Rendering
 app.get("/api/users", (req, res) => {
   return res.json(users);
+});
+
+// -----------------------------------------------------------------------------------------
+app.get("/api/users/:id", (req, res) => {
+  const id = Number(req.params.id); //to get id
+  const user = users.find((user) => user.id === id); //find the user
+  return res.json(user);
 });
 
 app.listen(PORT, () => {
