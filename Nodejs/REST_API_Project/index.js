@@ -60,6 +60,21 @@ app.patch("/api/users/:id", (req, res) => {
 });
 
 // -----------------------------------------------------------------------------------------
+app.delete("/api/users/:id", (req, res) => {
+  const id = Number(req.params.id);
+  // find user to delete
+  const userIndex = users.findIndex((user) => user.id === id);
+
+  // Remove user from the array
+  users.splice(userIndex, 1);
+
+//   Updated data in MOCK_DATA.json
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
+    return res.json({ message: "User deleted successfully" });
+  });
+});
+
+// -----------------------------------------------------------------------------------------
 app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
