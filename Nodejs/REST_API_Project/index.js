@@ -7,6 +7,12 @@ const mongoose = require("mongoose");
 const PORT = 3000;
 app.use(express.urlencoded({ extended: false })); //added middleware
 
+// Connection (database & express), it returns a promise
+mongoose
+  .connect("mongodb://127.0.0.1:27017/youtube-app")
+  .then(() => console.log("MongoDB Conneted"))
+  .catch((err) => console.log("Error: ", err));
+
 //Schema
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -29,11 +35,10 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-
 //Model:
 const User = mongoose.model("User", userSchema); // Create a model using the schema
 
-// ----------------------------------------------------------------------------------------------------- 
+// -----------------------------------------------------------------------------------------------------
 // GET /users => HTML Document render (for browser)
 // Server Side Rendering
 app.get("/users", (req, res) => {
