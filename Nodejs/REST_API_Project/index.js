@@ -29,6 +29,11 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+
+//Model:
+const User = mongoose.model("User", userSchema); // Create a model using the schema
+
+// ----------------------------------------------------------------------------------------------------- 
 // GET /users => HTML Document render (for browser)
 // Server Side Rendering
 app.get("/users", (req, res) => {
