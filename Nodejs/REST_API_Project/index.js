@@ -42,6 +42,24 @@ app.post("/api/users", (req, res) => {
 });
 
 // -----------------------------------------------------------------------------------------
+app.patch("/api/users/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const updatedData = req.body;
+  //find user to update
+  const userIndex = users.findIndex((user) => user.id === id);
+
+  // Update user data (avoid modifying original array directly)
+  const updatedUser = { ...users[userIndex], ...updatedData };
+
+  // Replace the user in the array with the updated version
+  users[userIndex] = updatedUser;
+
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
+    return res.json({ message: "User updated successfully" });
+  });
+});
+
+// -----------------------------------------------------------------------------------------
 app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
