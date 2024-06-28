@@ -1,0 +1,14 @@
+REST API
+
+// Creating Hybrid Server - good practice
+GET /users => HTML Document render (for browser)
+GET /api/users => List all users (for mobile)
+
+GET /api/users/1 => Get user with id 1
+GET /api/users/2 => Get user with id 2
+
+POST /api/users => Create new user
+
+PATCH /api/users/1 => Edit/update user with id 1
+
+DELETE /api/users/1 => Delete user with id 1
