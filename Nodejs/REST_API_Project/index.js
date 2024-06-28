@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 const users = require("./MOCK_DATA.json");
+const fs = require("fs");
 
 const PORT = 3000;
+app.use(express.urlencoded({ extended: false })); //added middleware
 
 // GET /users => HTML Document render (for browser)
 // Server Side Rendering
@@ -29,6 +31,17 @@ app.get("/api/users/:id", (req, res) => {
   return res.json(user);
 });
 
+// -----------------------------------------------------------------------------------------
+app.post("/api/users", (req, res) => {
+  const body = req.body; //data sent on frontend is available in req.body
+  console.log(body);
+  users.push({ ...body, id: users.length + 1 });
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    return res.json({ status: "entry added successfully" });
+  });
+});
+
+// -----------------------------------------------------------------------------------------
 app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
