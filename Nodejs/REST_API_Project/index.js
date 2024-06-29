@@ -42,12 +42,14 @@ const userSchema = new mongoose.Schema(
 const User = mongoose.model("User", userSchema); // Create a model using the schema
 
 // -----------------------------------------------------------------------------------------------------
+// Read a document (using get request to read all users)
 // GET /users => HTML Document render (for browser)
 // Server Side Rendering
-app.get("/users", (req, res) => {
+app.get("/users", async (req, res) => {
+  const allDbUsers = await User.find({});
   const html = `
   <ul>
-  ${users.map((user) => `<li>${user.first_name}</li>`).join("")}
+  ${allDbUsers.map((user) => `<li>${user.firstName}</li>`).join("")}
   </ul>
   `;
   res.send(html);
@@ -66,7 +68,6 @@ app.get("/api/users/:id", (req, res) => {
   const user = users.find((user) => user.id === id); //find the user
   return res.json(user);
 });
-
 
 //POST request for creating new user in database (postman)
 // -----------------------------------------------------------------------------------------
