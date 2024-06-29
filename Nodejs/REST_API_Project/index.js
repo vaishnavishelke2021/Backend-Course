@@ -64,9 +64,10 @@ app.get("/api/users", async (req, res) => {
 });
 
 // -----------------------------------------------------------------------------------------
-app.get("/api/users/:id", (req, res) => {
-  const id = Number(req.params.id); //to get id
-  const user = users.find((user) => user.id === id); //find the user
+// Read document, get a user by ID
+app.get("/api/users/:id", async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return res.status(404).json({ msg: "User not found" });
   return res.json(user);
 });
 
