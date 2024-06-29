@@ -1,0 +1,19 @@
+Mongoose : a package used to connect MongoDB and express
+
+WE HAVE : 
+    Schema : where we define the structure
+    Model : we create model usng schema 
+            using model we can do CRUD operations
+
+Mongoose.connect returns a promise
+
+
+0. create database : (in cmd: mongosh, use db-name)
+1. connect monodb and node using Mongoose
+2. create a schema
+3. create a model
+4. create a document (using post request to add new user)
+5. read a document (using get request to read all users)
+6. update a document (using patch request to update a user)
+7. delete a document (using delete request to delete a user)
+
