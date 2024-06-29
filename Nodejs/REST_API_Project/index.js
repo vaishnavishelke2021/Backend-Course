@@ -93,21 +93,10 @@ app.post("/api/users", async (req, res) => {
 });
 
 // -----------------------------------------------------------------------------------------
-app.patch("/api/users/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const updatedData = req.body;
-  //find user to update
-  const userIndex = users.findIndex((user) => user.id === id);
-
-  // Update user data (avoid modifying original array directly)
-  const updatedUser = { ...users[userIndex], ...updatedData };
-
-  // Replace the user in the array with the updated version
-  users[userIndex] = updatedUser;
-
-  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
-    return res.json({ message: "User updated successfully" });
-  });
+// Update a document (using put request to update a user)
+app.patch("/api/users/:id", async (req, res) => {
+  await User.findByIdAndUpdate(req.params.id, { lastName: "Changed" });
+  return res.json({ message: "User updated successfully" });
 });
 
 // -----------------------------------------------------------------------------------------
