@@ -58,8 +58,9 @@ app.get("/users", async (req, res) => {
 // -----------------------------------------------------------------------------------------
 // GET /api/users => List all users (for mobile)
 // Client Side Rendering
-app.get("/api/users", (req, res) => {
-  return res.json(users);
+app.get("/api/users", async (req, res) => {
+  const allDbUsers = await User.find({});
+  return res.json(allDbUsers);
 });
 
 // -----------------------------------------------------------------------------------------
