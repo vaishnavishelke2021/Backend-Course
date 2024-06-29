@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const users = require("./MOCK_DATA.json");
+// const users = require("./MOCK_DATA.json");
 const fs = require("fs");
 const mongoose = require("mongoose");
 
@@ -14,26 +14,29 @@ mongoose
   .catch((err) => console.log("Error: ", err));
 
 //Schema
-const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true, // Remove leading/trailing whitespace
+const userSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lastName: {
+      type: String,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
+    gender: {
+      type: String,
+    },
   },
-  lastName: {
-    type: String,
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true, // Convert email to lowercase for case-insensitive comparison
-  },
-  gender: {
-    type: String,
-  },
-});
+  { timestamps: true }
+);
 
 //Model:
 const User = mongoose.model("User", userSchema); // Create a model using the schema
@@ -64,14 +67,26 @@ app.get("/api/users/:id", (req, res) => {
   return res.json(user);
 });
 
+
+//POST request for creating new user in database (postman)
 // -----------------------------------------------------------------------------------------
-app.post("/api/users", (req, res) => {
+app.post("/api/users", async (req, res) => {
   const body = req.body; //data sent on frontend is available in req.body
-  console.log(body);
-  users.push({ ...body, id: users.length + 1 });
-  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-    return res.json({ status: "entry added successfully" });
+
+  if (!body || !body.firstName || !body.email) {
+    return res.status(400).json({ msg: "All fields are required" });
+  }
+
+  //Create user (and add in db)
+  const result = await User.create({
+    firstName: body.firstName,
+    lastName: body.lastName,
+    email: body.email,
+    gender: body.gender,
   });
+
+  console.log(result);
+  return res.status(201).json({ msg: "success" });
 });
 
 // -----------------------------------------------------------------------------------------
