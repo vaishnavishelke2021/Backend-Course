@@ -1,6 +1,13 @@
 const express = require("express");
 const User = require("../models/userModel");
 const router = express.Router();
+const {
+  handleGetAllUsers,
+  handleGetUserById,
+  handleUpdateUserById,
+  handleDeleteUserById,
+  handleCreateUser,
+} = require("../controllers/userController");
 
 // -----------------------------------------------------------------------------------------------------
 // Read a document (using get request to read all users)
@@ -19,52 +26,22 @@ router.get("/users", async (req, res) => {
 // -----------------------------------------------------------------------------------------
 // GET /api/users => List all users (for mobile)
 // Client Side Rendering
-router.get("/api/users", async (req, res) => {
-  const allDbUsers = await User.find({});
-  return res.json(allDbUsers);
-});
+router.get("/api/users", handleGetAllUsers);
 
 // -----------------------------------------------------------------------------------------
 // Read document, get a user by ID
-router.get("/api/users/:id", async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (!user) return res.status(404).json({ msg: "User not found" });
-  return res.json(user);
-});
+router.get("/api/users/:id", handleGetUserById);
 
 //POST request for creating new user in database (postman)
 // -----------------------------------------------------------------------------------------
-router.post("/api/users", async (req, res) => {
-  const body = req.body; //data sent on frontend is available in req.body
-
-  if (!body || !body.firstName || !body.email) {
-    return res.status(400).json({ msg: "All fields are required" });
-  }
-
-  //Create user (and add in db)
-  const result = await User.create({
-    firstName: body.firstName,
-    lastName: body.lastName,
-    email: body.email,
-    gender: body.gender,
-  });
-
-  console.log(result);
-  return res.status(201).json({ msg: "success" });
-});
+router.post("/api/users", handleCreateUser);
 
 // -----------------------------------------------------------------------------------------
 // Update a document (using put request to update a user)
-router.patch("/api/users/:id", async (req, res) => {
-  await User.findByIdAndUpdate(req.params.id, { lastName: "Changed" });
-  return res.json({ message: "User updated successfully" });
-});
+router.patch("/api/users/:id", handleUpdateUserById);
 
 // -----------------------------------------------------------------------------------------
 // Delete a document (using delete request to delete a user)
-router.delete("/api/users/:id", async (req, res) => {
-  await User.findByIdAndDelete(req.params.id);
-  return res.json({ message: "User deleted successfully" });
-});
+router.delete("/api/users/:id", handleDeleteUserById);
 
 module.exports = router;
