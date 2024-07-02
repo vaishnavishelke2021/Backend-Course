@@ -4,7 +4,7 @@ const urlRoute = require("./routes/urlRoute");
 const { connectMongoDb } = require("./connection.js");
 const PORT = 3000;
 
-connectMongoDb("mongodb://localhost:27017/short-url").then(() =>
+connectMongoDb("mongodb://localhost:27017/url-shortener").then(() =>
   console.log("Mongodb connected")
 );
 
