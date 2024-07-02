@@ -9,13 +9,16 @@ connectMongoDb("mongodb://localhost:27017/url-shortener").then(() =>
   console.log("Mongodb connected")
 );
 
+//ejs
+app.set("view engine", "ejs");
+
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Route
-app.use("/url", urlRoute); 
-app.use("/analytics", urlRoute); 
+app.use("/url", urlRoute);
+app.use("/analytics", urlRoute);
 
 app.get("/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
