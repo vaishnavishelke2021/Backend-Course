@@ -7,6 +7,9 @@ const PORT = 3000;
 // database connection
 connectToMongoDb();
 
+//middleware
+app.use(express.json());
+
 // default route
 app.get("/", (req, res) => {
   res.send("Hello World");
