@@ -19,7 +19,7 @@ async function createPost(req, res) {
 
 async function getAllPost(req, res) {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate("likes").populate("comments").exec();
     res.json({
       posts,
     });
