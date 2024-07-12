@@ -17,4 +17,18 @@ async function createPost(req, res) {
   }
 }
 
-module.exports = { createPost };
+async function getAllPost(req, res) {
+  try {
+    const posts = await Post.find();
+    res.json({
+      posts,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+}
+
+module.exports = { createPost, getAllPost };
