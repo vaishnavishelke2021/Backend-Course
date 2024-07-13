@@ -36,7 +36,7 @@ async function unlikePost(req, res) {
   try {
     const { post, like } = req.body;
     //find and delete like
-    const deletedLike = await Like.findOneAndUpdate({ post: post, _id: like });
+    const deletedLike = await Like.findOneAndDelete({ post: post, _id: like });
     // update the post collection
     const updatePost = await Post.findByIdAndUpdate(
       post,
