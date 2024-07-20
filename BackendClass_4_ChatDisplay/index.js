@@ -11,7 +11,7 @@ app.use(methodOverride("_method"));
 
 //routes
 const chatRoutes = require("./routes/chatRoutes");
-const Chat = require("./models/chaatModel");
+const Chat = require("./models/chatModel");
 app.use("/api/v1", chatRoutes);
 
 //ejs

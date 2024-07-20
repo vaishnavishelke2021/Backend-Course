@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const chatSchema = new mongoose.Schema({
   message: {
     type: String,
-    maxLength: 50,
+    maxLength: 80,
   },
   from: {
     type: String,
