@@ -1,5 +1,9 @@
 const express = require("express");
 const app = express();
+const connectToMongoDB = require("./connection");
+
+//Mongodb connection
+connectToMongoDB();
 
 const PORT = 8080;
 
