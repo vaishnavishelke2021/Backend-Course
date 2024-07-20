@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
 const connectToMongoDB = require("./connection");
+const path = require("path");
+
+//ejs
+app.set("views", path.join(__dirname, "/views"));
+app.set("view engine", "ejs");
 
 //Mongodb connection
 connectToMongoDB();
@@ -8,7 +13,7 @@ connectToMongoDB();
 const PORT = 8080;
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.render("index.ejs");
 });
 
 app.listen(PORT, () => {
