@@ -3,6 +3,14 @@ const app = express();
 const connectToMongoDB = require("./connection");
 const path = require("path");
 
+//middleware
+app.use(express.json());
+
+//routes
+const chatRoutes = require("./routes/chatRoutes");
+const Chat = require("./models/chaatModel");
+app.use("/api/v1", chatRoutes);
+
 //ejs
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
