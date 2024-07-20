@@ -24,7 +24,11 @@ async function newChatBtn(req, res) {
 async function createChat(req, res) {
   try {
     let { message, from, to } = req.body;
-    let response = await Chat.create({ message, from, to });
+    let response = await Chat.create({
+      message,
+      from,
+      to,
+    });
     console.log(response);
     res.redirect("/api/v1/chats");
     // res.json({
