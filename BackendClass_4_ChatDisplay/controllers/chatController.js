@@ -17,9 +17,13 @@ async function showChats(req, res) {
   }
 }
 
+// --------------------------------------------------------------------------------------------------------------
+
 async function newChatBtn(req, res) {
   res.render("newChat.ejs");
 }
+
+// --------------------------------------------------------------------------------------------------------------
 
 async function createChat(req, res) {
   try {
@@ -44,4 +48,38 @@ async function createChat(req, res) {
   }
 }
 
-module.exports = { showChats, newChatBtn, createChat };
+// -------------------------------------------------------------------------------------------------------------
+async function editChatBtn(req, res) {
+  try {
+    let { id } = req.params;
+    let updatedChat = await Chat.findById(id);
+    res.render("editChat.ejs", { updatedChat });
+  } catch (e) {
+    console.log(e);
+    res.json({
+      status: "fail",
+    });
+  }
+}
+
+// ------------------------------------------------------------------------------------------------------------
+async function editChat(req, res) {
+  try {
+    let { id } = req.params;
+    let { message } = req.body;
+    let updatedChat = await Chat.findByIdAndUpdate(
+      id,
+      { message: message },
+      { runValidators: true, new: true }
+    );
+    console.log(updatedChat);
+    res.redirect("/api/v1/chats");
+  } catch (e) {
+    console.log(e);
+    res.json({
+      status: "fail",
+    });
+  }
+}
+
+module.exports = { showChats, newChatBtn, createChat, editChatBtn, editChat };

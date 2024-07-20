@@ -77,7 +77,7 @@
         background-color: rgba(128, 128, 128, 0.297);
       }
 
-      button {
+      .btn {
         margin-bottom: 1rem;
         /* margin-top: 10px; */
         background-color: rgb(30, 91, 111);
@@ -89,7 +89,7 @@
         font-size: 0.9rem;
       }
 
-      button:hover {
+      .btn:hover {
         background-color: rgb(12, 62, 79);
         color: #ffffff;
         transition: all 0.3s;
@@ -106,7 +106,7 @@
     <div class="wrapper">
       <h1>All Chats Display</h1>
       <form method="GET" action="/api/v1/chats/new">
-        <button>Add new chat</button>
+        <button class="btn">Add new chat</button>
       </form>
       <div id="hr"></div>
 
@@ -116,6 +116,9 @@
           <p class="from">From: <%= chat.from %></p>
           <h3><%= chat.message %></h3>
           <p class="to">To: <%= chat.to %></p>
+          <form action="/api/v1/chats/<%= chat._id  %>/edit" method="GET">
+            <button>Edit</button>
+          </form>
           <!-- <br /> -->
           <hr />
           <p id="date">

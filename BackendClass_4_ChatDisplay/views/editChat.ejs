@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Chat</title>
+    <title>Edit Chat</title>
     <link
       href="https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic"
       rel="stylesheet"
@@ -27,9 +27,29 @@
         height: 95vh;
         margin: auto;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
+
+      #wrapper div {
+        color: rgb(12, 62, 79);
+        width: 32%;
+      }
+
+      #wrapper div h3 span{
+        color: #161616;
+        font-size: 14px;
+        font-style: italic;
+      }
+
+      #wrapper div p{
+        color: #161616;
+        margin-top: -5px;
+        font-weight: 400;
+        font-size: 17px;
+      }
+
 
       form {
         width: 35%;
@@ -50,6 +70,7 @@
       }
 
       button {
+        margin-top: 2rem;
         width: 95%;
         background-color: rgb(30, 91, 111);
         padding: 8px 0px;
@@ -70,17 +91,18 @@
   </head>
   <body>
     <div id="wrapper">
-      <form action="/api/v1/chats" method="POST">
-        <input name="from" placeholder="From ?" /> <br />
-        <textarea
-          rows="10"
-          cols="20"
-          name="message"
-          placeholder="Enter your message"
-        ></textarea>
-        <br />
-        <input placeholder="To ?" name="to" /> <br />
-        <button>Add Chat</button>
+      <div>
+        <h3>Edit your chat: <span>Chat ID: <%= updatedChat._id %></span></h3>
+        <p>
+          This chat was sent from <b><%= updatedChat.from %></b> to <b><%= updatedChat.to
+          %></b>
+        </p>
+      </div>
+      <form action="/api/v1/chats/<%= updatedChat._id %>?_method=PUT" method="POST">
+        <textarea rows=14" cols="10" name="message">
+<%= updatedChat.message %></textarea
+        >
+        <button>Save changes</button>
       </form>
     </div>
   </body>
