@@ -82,4 +82,27 @@ async function editChat(req, res) {
   }
 }
 
-module.exports = { showChats, newChatBtn, createChat, editChatBtn, editChat };
+// ------------------------------------------------------------------------------------------------------------
+
+async function deleteChat(req, res) {
+  try {
+    let { id } = req.params;
+    let deletedChat = await Chat.findByIdAndDelete(id);
+    console.log(deletedChat);
+    res.redirect("/api/v1/chats");
+  } catch (e) {
+    console.log(e);
+    res.json({
+      status: "fail to delete",
+    });
+  }
+}
+
+module.exports = {
+  showChats,
+  newChatBtn,
+  createChat,
+  editChatBtn,
+  editChat,
+  deleteChat,
+};

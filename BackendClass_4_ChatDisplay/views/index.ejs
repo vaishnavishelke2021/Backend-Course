@@ -43,7 +43,7 @@
         flex-wrap: wrap;
       }
       .chatBox {
-        width: 22%;
+        width: 21%;
         background-color: #f6f6f6a7;
         color: #161616;
         padding: 0.4rem 1rem;
@@ -79,7 +79,6 @@
 
       .btn {
         margin-bottom: 1rem;
-        /* margin-top: 10px; */
         background-color: rgb(30, 91, 111);
         padding: 10px 20px;
         border-radius: 5px;
@@ -100,6 +99,26 @@
         font-size: 12px;
         color: #161616ce;
       }
+
+      .Butttons {
+        display: flex;
+      }
+
+      button {
+        background-color: rgb(107, 146, 160);
+        padding: 7px 14px;
+        border-radius: 3px;
+        color: #f6f6f6;
+        border: none;
+        outline: none;
+        font-size: 0.8rem;
+      }
+      button:hover {
+        background-color: rgb(12, 62, 79);
+        color: #ffffff;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -116,9 +135,19 @@
           <p class="from">From: <%= chat.from %></p>
           <h3><%= chat.message %></h3>
           <p class="to">To: <%= chat.to %></p>
-          <form action="/api/v1/chats/<%= chat._id  %>/edit" method="GET">
-            <button>Edit</button>
-          </form>
+          <!-- ---------------------------------Edit and delete--------------------------------------- -->
+          <div class="Butttons">
+            <form action="/api/v1/chats/<%= chat._id  %>/edit" method="GET">
+              <button>Edit</button>
+            </form>
+            <form
+              style="margin-left: 0.5rem"
+              method="POST"
+              action="/api/v1/chats/<%= chat._id  %>?_method=DELETE"
+            >
+              <button>Delete</button>
+            </form>
+          </div>
           <!-- <br /> -->
           <hr />
           <p id="date">
