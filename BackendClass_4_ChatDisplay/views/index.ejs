@@ -18,7 +18,7 @@
         border-radius: 10px;
       }
       body {
-        background-color: #f6f6f6;
+        background-color: rgb(142, 170, 180);
         color: #161616;
         font-family: "Lato";
       }
@@ -33,7 +33,7 @@
       }
 
       h1 {
-        padding: 0.3rem;
+        padding-top: 0.3rem;
         color: rgb(30, 91, 111);
       }
       .container {
@@ -44,7 +44,7 @@
       }
       .chatBox {
         width: 20%;
-        background-color: rgb(134, 174, 187);
+        background-color: #f6f6f6a7;
         color: #161616;
         padding: 0.4rem 1rem;
         border-radius: 5px;
@@ -76,11 +76,33 @@
         width: 100%;
         background-color: rgba(128, 128, 128, 0.297);
       }
+
+      button {
+        margin-bottom: 1rem;
+        /* margin-top: 10px; */
+        background-color: rgb(30, 91, 111);
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #f6f6f6;
+        border: none;
+        outline: none;
+        font-size: 0.9rem;
+      }
+
+      button:hover {
+        background-color: rgb(12, 62, 79);
+        color: #ffffff;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <div class="wrapper">
-      <h1>All Chats...</h1>
+      <h1>All Chats Display</h1>
+      <form method="GET" action="/api/v1/chats/new">
+        <button>Add new chat</button>
+      </form>
       <div id="hr"></div>
 
       <div class="container">

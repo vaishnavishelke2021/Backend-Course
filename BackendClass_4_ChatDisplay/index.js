@@ -5,6 +5,7 @@ const path = require("path");
 
 //middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //routes
 const chatRoutes = require("./routes/chatRoutes");

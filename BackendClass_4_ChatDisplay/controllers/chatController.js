@@ -17,4 +17,27 @@ async function showChats(req, res) {
   }
 }
 
-module.exports = { showChats };
+async function newChatBtn(req, res) {
+  res.render("newChat.ejs");
+}
+
+async function createChat(req, res) {
+  try {
+    let { message, from, to } = req.body;
+    let response = await Chat.create({ message, from, to });
+    console.log(response);
+    res.redirect("/api/v1/chats");
+    // res.json({
+    //   status: "success",
+    //   data: response,
+    // });
+  } catch (e) {
+    console.log(e);
+    console.log(req.body);
+    res.json({
+      status: "fail",
+    });
+  }
+}
+
+module.exports = { showChats, newChatBtn, createChat };
