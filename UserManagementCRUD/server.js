@@ -21,6 +21,10 @@ app.use(bodyparser.json());
 app.set("view engine", "ejs");
 // app.set("views", path.resolve(__dirname));
 
+// override with POST having ?_method=PUT
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
+
 // load assets
 app.use("/css", express.static(path.resolve(__dirname, "assets/css")));
 app.use("/js", express.static(path.resolve(__dirname, "assets/js")));
