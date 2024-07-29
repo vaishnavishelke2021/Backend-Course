@@ -183,60 +183,44 @@
 
       <!-- User Form -->
       <div id="userForm">
-        <form action="" method="POST">
+        <form
+          action="/api/users/<%= updatedUser._id %>?_method=PUT"
+          method="POST"
+        >
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value="<%= updatedUser.name %>"
+            required
+          />
 
           <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="<%= updatedUser.email %>"
+            required
+          />
 
           <div class="radiobtns">
             <label for="gender">Gender:</label>
             <div class="radio-group">
               <label for="male">
-                <input
-                  type="radio"
-                  id="male"
-                  name="gender"
-                  value="male"
-                  required
-                />
+                <input type="radio" id="male" name="gender" value="male" <%=
+                updatedUser.gender === 'male' ? 'checked' : '' %> required />
                 Male
               </label>
-              <label
-                for="female"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  gap: 4px;
-                "
-              >
-                <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  value="female"
-                  required
-                />
+              <label for="female">
+                <input type="radio" id="female" name="gender" value="female" <%=
+                updatedUser.gender === 'female' ? 'checked' : '' %> required />
                 Female
               </label>
-              <label
-                for="other"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  gap: 4px;
-                "
-              >
-                <input
-                  type="radio"
-                  id="other"
-                  name="gender"
-                  value="other"
-                  required
-                />
+              <label for="other">
+                <input type="radio" id="other" name="gender" value="other" <%=
+                updatedUser.gender === 'other' ? 'checked' : '' %> required />
                 Other
               </label>
             </div>
@@ -245,47 +229,20 @@
           <div class="radiobtns">
             <label for="status" style="margin-top: 4px">Status:</label>
             <div class="radio-group">
-              <label
-                for="active"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  gap: 4px;
-                  margin-left: 7px;
-                "
-              >
-                <input
-                  type="radio"
-                  id="active"
-                  name="status"
-                  value="active"
-                  required
-                />
+              <label for="active">
+                <input type="radio" id="active" name="status" value="active" <%=
+                updatedUser.status === 'active' ? 'checked' : '' %> required />
                 Active
               </label>
-              <label
-                for="inactive"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  gap: 4px;
-                "
-              >
-                <input
-                  type="radio"
-                  id="inactive"
-                  name="status"
-                  value="inactive"
-                  required
-                />
-                Inactive
+              <label for="inactive">
+                <input type="radio" id="inactive" name="status" value="inactive"
+                <%= updatedUser.status === 'inactive' ? 'checked' : '' %>
+                required /> Inactive
               </label>
             </div>
           </div>
 
-          <input type="submit" value="Save" />
+          <input type="submit" value="Save Changes" />
         </form>
       </div>
     </div>

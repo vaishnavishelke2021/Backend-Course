@@ -40,7 +40,7 @@
 
       /* Main Content Styles */
       #main {
-        width: 70%;
+        width: 65%;
         max-width: 1200px;
         margin: auto;
         margin-top: 4rem;
@@ -102,7 +102,14 @@
         padding: 8px;
       }
 
-      #EditDelete a {
+      #EditDelete {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      form button {
         margin: 0 5px;
         text-decoration: none;
         padding: 4px 7px;
@@ -110,16 +117,17 @@
         background-color: white;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.105);
         border-radius: 2px;
+        border: none;
       }
 
-      #EditDelete a:nth-child(1) {
+      #edit button {
         color: rgb(47, 185, 47);
       }
-      #EditDelete a:nth-child(2) {
+      #delete button {
         color: rgb(210, 68, 68);
       }
 
-      #EditDelete a:hover {
+      form button:hover {
         background-color: #2f2f2f0e;
         transition: all ease-in-out 0.1s;
       }
@@ -179,7 +187,6 @@
         <table>
           <thead>
             <tr>
-              <th>ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Gender</th>
@@ -190,18 +197,26 @@
           <tbody>
             <% users.forEach((user) => { %>
             <tr>
-              <td><%= user._id %></td>
               <td><%= user.name %></td>
               <td><%= user.email %></td>
               <td><%= user.gender %></td>
               <td><%= user.status %></td>
               <td id="EditDelete">
-                <a href="/updateUser/<%= user._id %>" title="Edit this user"
-                  ><i class="fas fa-edit"></i
-                ></a>
-                <a href="/delete/<%= user._id %>" title="Delete this user"
-                  ><i class="fas fa-trash-alt"></i
-                ></a>
+                <form
+                  id="edit"
+                  action="/api/users/<%= user._id %>/update"
+                  method="GET"
+                >
+                  <button><i class="fas fa-edit"></i></button>
+                </form>
+
+                <form
+                  id="delete"
+                  method="POST"
+                  action="/api/users/<%= user._id  %>?_method=DELETE"
+                >
+                  <button><i class="fas fa-trash-alt"></i></button>
+                </form>
               </td>
             </tr>
             <% }) %>
