@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const bodyparser = require("body-parser");
 const path = require("path");
 const router = require("./routes/routes");
+const connectTomongoDB = require("./connection");
 
 dotenv.config({ path: ".env" });
 const PORT = process.env.PORT || 8080;
@@ -25,6 +26,9 @@ app.use("/js", express.static(path.resolve(__dirname, "assets/js")));
 
 //routes
 app.use("/", router);
+
+//database connection
+connectTomongoDB();
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
