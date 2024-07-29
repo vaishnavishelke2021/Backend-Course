@@ -15,6 +15,7 @@ app.use(morgan("tiny"));
 
 //body parser
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
 
 //set view engine
 app.set("view engine", "ejs");
@@ -25,7 +26,7 @@ app.use("/css", express.static(path.resolve(__dirname, "assets/css")));
 app.use("/js", express.static(path.resolve(__dirname, "assets/js")));
 
 //routes
-app.use("/", router);
+app.use("/api/users", router);
 
 //database connection
 connectTomongoDB();
