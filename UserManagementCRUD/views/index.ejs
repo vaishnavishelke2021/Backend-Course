@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management System</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* General Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins";
+      }
+
+      ::selection {
+        background-color: rgb(144, 35, 144);
+        color: white;
+      }
+
+      /* Header Styles */
+      #header {
+        background-color: rgb(144, 35, 144);
+        color: white;
+        text-align: center;
+        padding: 0.9rem;
+      }
+      #header h2 {
+        font-weight: 500;
+      }
+
+      /* Main Content Styles */
+      #main {
+        width: 70%;
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 4rem;
+      }
+
+      #btn a {
+        border-radius: 2px;
+        text-decoration: none;
+        background-color: white;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.11);
+        color: rgb(144, 35, 144);
+        padding: 4px 10px;
+        display: flex;
+        width: fit-content;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      #btn a:hover {
+        background-color: rgb(144, 35, 144);
+        transition: all 0.3s;
+        color: white;
+      }
+
+      /* Table Styles */
+      #userTable {
+        margin-top: 1rem;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 16px;
+        text-align: center;
+        min-width: 600px;
+      }
+
+      thead th {
+        font-weight: 600;
+        background-color: #2f2f2f;
+        color: white;
+        padding: 10px 14px;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f3f3f3;
+      }
+
+      tbody tr:hover {
+        background-color: #2f2f2f0e;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+
+      #EditDelete a {
+        margin: 0 5px;
+        text-decoration: none;
+        padding: 4px 7px;
+        font-size: 12px;
+        background-color: white;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.105);
+        border-radius: 2px;
+      }
+
+      #EditDelete a:nth-child(1) {
+        color: rgb(47, 185, 47);
+      }
+      #EditDelete a:nth-child(2) {
+        color: rgb(210, 68, 68);
+      }
+
+      #EditDelete a:hover {
+        background-color: #2f2f2f0e;
+        transition: all ease-in-out 0.1s;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        #main {
+          width: 95%;
+          margin-top: 2rem;
+        }
+
+        table {
+          font-size: 14px;
+        }
+
+        thead th,
+        td,
+        th {
+          padding: 8px 10px;
+        }
+
+        #btn a {
+          padding: 3px 8px;
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        thead th,
+        td,
+        th {
+          padding: 6px 8px;
+        }
+
+        #btn a {
+          padding: 2px 6px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header">
+      <h2>User Management System</h2>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main">
+      <div id="btn">
+        <a href="/"
+          >Add User <i class="fas fa-user user-icon" style="font-size: 13px"></i
+        ></a>
+      </div>
+
+      <div id="userTable">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Fake name</td>
+              <td>user@gmail.com</td>
+              <td>Male</td>
+              <td>Active</td>
+              <td id="EditDelete">
+                <a href="/edit" title="Edit this user"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <a href="/delete" title="Delete this user"
+                  ><i class="fas fa-trash-alt"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
