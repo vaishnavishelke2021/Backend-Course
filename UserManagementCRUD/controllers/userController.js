@@ -58,4 +58,17 @@ async function updateUser(req, res) {
   }
 }
 
-module.exports = { createUser, allUsers, updateUser };
+// delete user ==========================================================
+async function deleteUser(req, res) {
+  try {
+    const { id } = req.params;
+    const deletedUser = await User.findByIdAndDelete(id);
+    // res.status(201).json({ msg: "User deleted successfully", data: deletedUser });
+    res.redirect("/api/users");
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ err: "Error deleting the user" });
+  }
+}
+
+module.exports = { createUser, allUsers, updateUser, deleteUser };
