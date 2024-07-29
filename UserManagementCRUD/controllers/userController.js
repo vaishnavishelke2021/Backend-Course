@@ -1,5 +1,10 @@
 const User = require("../models/userModel");
 
+async function addNewUserBtn(req, res) {
+  res.render("addUser.ejs");
+}
+
+// create user -------------------------------------------
 async function createUser(req, res) {
   try {
     if (
@@ -34,23 +39,33 @@ async function allUsers(req, res) {
   }
 }
 
+// update btn-------------------------------------------------------------------------------------------------------------
+async function updateUserBtn(req, res) {
+  try {
+    let { id } = req.params;
+    let updatedUser = await User.findById(id);
+    res.render("updateUser.ejs", { updatedUser });
+  } catch (e) {
+    console.log(e);
+    res.json({
+      status: "fail",
+    });
+  }
+}
+
 // update user =======================================================
 async function updateUser(req, res) {
   try {
-    if (!req.body) {
-      res.status(400).json({ msg: "data to update cannot be empty" });
-    }
-
     const { id } = req.params;
     const { name, email, gender, status } = req.body;
-    const updatedUser = await User.findByIdAndUpdate({
-      _id: id,
-      name,
-      email,
-      gender,
-      status,
-    });
-    // res.status(201).json({ msg: "User updated", data: updatedUser });
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      { name, email, gender, status },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ err: "User not found" });
+    }
     res.redirect("/api/users");
   } catch (e) {
     console.log(e);
@@ -63,6 +78,7 @@ async function deleteUser(req, res) {
   try {
     const { id } = req.params;
     const deletedUser = await User.findByIdAndDelete(id);
+    console.log(deletedUser);
     // res.status(201).json({ msg: "User deleted successfully", data: deletedUser });
     res.redirect("/api/users");
   } catch (e) {
@@ -71,4 +87,11 @@ async function deleteUser(req, res) {
   }
 }
 
-module.exports = { createUser, allUsers, updateUser, deleteUser };
+module.exports = {
+  createUser,
+  allUsers,
+  updateUser,
+  deleteUser,
+  addNewUserBtn,
+  updateUserBtn,
+};
