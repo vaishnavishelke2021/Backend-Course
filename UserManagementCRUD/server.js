@@ -30,6 +30,10 @@ app.get("/adduser", (req, res) => {
   res.render("addUser");
 });
 
+app.get("/updateUser", (req, res) => {
+  res.render("updateUser");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
