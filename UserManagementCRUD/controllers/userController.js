@@ -34,4 +34,28 @@ async function allUsers(req, res) {
   }
 }
 
-module.exports = { createUser, allUsers };
+// update user =======================================================
+async function updateUser(req, res) {
+  try {
+    if (!req.body) {
+      res.status(400).json({ msg: "data to update cannot be empty" });
+    }
+
+    const { id } = req.params;
+    const { name, email, gender, status } = req.body;
+    const updatedUser = await User.findByIdAndUpdate({
+      _id: id,
+      name,
+      email,
+      gender,
+      status,
+    });
+    // res.status(201).json({ msg: "User updated", data: updatedUser });
+    res.redirect("/api/users");
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ err: "Error updating the user" });
+  }
+}
+
+module.exports = { createUser, allUsers, updateUser };
