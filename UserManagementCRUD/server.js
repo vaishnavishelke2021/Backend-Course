@@ -26,6 +26,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/adduser", (req, res) => {
+  res.render("addUser");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
