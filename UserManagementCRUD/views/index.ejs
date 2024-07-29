@@ -188,21 +188,23 @@
             </tr>
           </thead>
           <tbody>
+            <% users.forEach((user) => { %>
             <tr>
-              <td>1</td>
-              <td>Fake name</td>
-              <td>user@gmail.com</td>
-              <td>Male</td>
-              <td>Active</td>
+              <td><%= user._id %></td>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.gender %></td>
+              <td><%= user.status %></td>
               <td id="EditDelete">
-                <a href="/updateUser" title="Edit this user"
+                <a href="/updateUser/<%= user._id %>" title="Edit this user"
                   ><i class="fas fa-edit"></i
                 ></a>
-                <a href="/delete" title="Delete this user"
+                <a href="/delete/<%= user._id %>" title="Delete this user"
                   ><i class="fas fa-trash-alt"></i
                 ></a>
               </td>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>

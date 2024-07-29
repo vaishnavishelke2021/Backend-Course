@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { createUser } = require("../controllers/userController");
+const { createUser, allUsers } = require("../controllers/userController");
 
-router.get("/", (req, res) => {
-  res.render("index");
-});
+router.get("/", allUsers);
 
 router.get("/adduser", (req, res) => {
   res.render("addUser");

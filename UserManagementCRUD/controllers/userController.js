@@ -21,4 +21,17 @@ async function createUser(req, res) {
   }
 }
 
-module.exports = { createUser };
+// get all users ================================================
+async function allUsers(req, res) {
+  try {
+    const users = await User.find();
+    // res.status(200).json({ msg: "All users", data: users });
+    // res.redirect("/api/users");
+    res.render("index", { users });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ err: "Error getting all users" });
+  }
+}
+
+module.exports = { createUser, allUsers };
