@@ -7,8 +7,45 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="min-h-[100vh] bg-zinc-800 text-white py-[2rem] px-[4rem]">
+    <div class="min-h-[100vh] bg-zinc-900 text-white py-[2rem] px-[4rem]">
       <h1 class="text-3xl font-semibold">Take Notes</h1>
+
+      <div class="form">
+        <form action="/create" method="post" class="py-6">
+          <input
+            class="w-full rounded-sm bg-white/5 p-3 text-zinc-400"
+            placeholder="Add your title here"
+            type="text"
+            name="title"
+          />
+          <br />
+          <textarea
+            class="mt-3 w-full rounded-sm bg-white/5 p-3 text-zinc-400"
+            placeholder="Add your note here"
+            name="note"
+            id="note"
+            rows="4"
+          ></textarea>
+          <br />
+          <button
+            class="bg-green-800 px-6 py-1 rounded-sm mt-2 text-white hover:bg-green-900 transition-all duration-300"
+            type="submit"
+          >
+            Add Note
+          </button>
+        </form>
+      </div>
+
+      <h1 class="text-2xl font-semibold mt-8">All Notes</h1>
+      <div class="tasks flex justify-start gap-x-2 mt-3">
+        <div class="p-3 hidden bg-white/5 rounded-sm w-[20%]">
+          <h1 class="text-[1.2rem] font-medium pb-1">MongoDB notes</h1>
+          <p class="text-white/30 text-[15px] leading-5 mt-1">Read more...</p>
+        </div>
+
+        <h1 class="text-[1.1rem] text-white/30 font-normal italic pb-1">No task available</h1>
+
+        
     </div>
   </body>
 </html>
