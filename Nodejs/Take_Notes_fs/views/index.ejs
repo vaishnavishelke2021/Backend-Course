@@ -11,7 +11,7 @@
       <h1 class="text-3xl font-semibold">Take Notes</h1>
 
       <div class="form">
-        <form action="/create" method="post" class="py-6">
+        <form action="/create" method="POST" class="py-6">
           <input
             class="w-full rounded-sm bg-white/5 p-3 text-zinc-400"
             placeholder="Add your title here"
@@ -37,14 +37,21 @@
       </div>
 
       <h1 class="text-2xl font-semibold mt-8">All Notes</h1>
+
+    
       <div class="tasks flex justify-start gap-x-2 mt-3">
-        <div class="p-3 hidden bg-white/5 rounded-sm w-[20%]">
-          <h1 class="text-[1.2rem] font-medium pb-1">MongoDB notes</h1>
-          <p class="text-white/30 text-[15px] leading-5 mt-1">Read more...</p>
-        </div>
-
-        <h1 class="text-[1.1rem] text-white/30 font-normal italic pb-1">No task available</h1>
-
+        
+        <% if(files.length > 0){ %>
+            <% files.forEach((task)=>{ %>
+                <div class="p-3 bg-white/5 rounded-sm w-[20%]">
+                    <h1 class="text-[1.2rem] font-medium pb-1"><%= task %></h1>
+                    <p class="text-white/30 text-[15px] leading-5 mt-1">Read more...</p>
+                  </div>
+              <% }) %>
+            <% } else { %>
+    
+                <h1 class="text-[1.1rem] text-white/30 font-normal italic pb-1">No task available</h1>
+                <% } %>
         
     </div>
   </body>
