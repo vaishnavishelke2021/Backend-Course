@@ -20,6 +20,14 @@ app.get("/", (req, res) => {
   });
 });
 
+//create route
+app.post("/create", (req, res) => {
+  //   console.log(req.body);
+  fs.writeFile(`./files/${req.body.title}`, req.body.note, (err) => {
+    res.redirect("/");
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
