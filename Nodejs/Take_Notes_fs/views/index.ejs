@@ -45,7 +45,7 @@
             <% files.forEach((task)=>{ %>
                 <div class="p-3 bg-white/5 rounded-sm w-[20%]">
                     <h1 class="text-[1.2rem] font-medium pb-1"><%= task %></h1>
-                    <p class="text-white/30 text-[15px] leading-5 mt-1">Read more...</p>
+                    <a href="/files/<%= task %>" class="text-white/30 text-[15px] leading-5 mt-1">Read more...</a>
                   </div>
               <% }) %>
             <% } else { %>

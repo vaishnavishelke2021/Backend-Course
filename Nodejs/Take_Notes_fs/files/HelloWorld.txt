@@ -1,0 +1,1 @@
+A "Hello, World!" program is generally a simple computer program which outputs to the screen a message similar to "Hello, World!" while ignoring any user input. A small piece of code in most general-purpose programming languages, this program is used to illustrate a language's basic syntax.
