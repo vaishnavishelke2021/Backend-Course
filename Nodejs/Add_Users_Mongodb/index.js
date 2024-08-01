@@ -35,6 +35,13 @@ app.post("/create", async (req, res) => {
   res.redirect("/users");
 });
 
+//delete user
+app.get("/delete/:id", async (req, res) => {
+  const id = req.params.id;
+  await User.findByIdAndDelete(id);
+  res.redirect("/users");
+});
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });
