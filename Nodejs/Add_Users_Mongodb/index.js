@@ -42,6 +42,23 @@ app.get("/delete/:id", async (req, res) => {
   res.redirect("/users");
 });
 
+//update user
+app.get("/edit/:userId", async (req, res) => {
+  const user = await User.findOne({ _id: req.params.userId });
+  res.render("edit", { user });
+});
+
+app.post("/update/:id", async (req, res) => {
+  const updateddata = req.body;
+  const id = req.params.id;
+  let updatedUser = await User.findByIdAndUpdate(id, updateddata, {
+    new: true,
+  });
+  res.redirect("/users");
+});
+
+// ------------------------------------------------------------------
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });
