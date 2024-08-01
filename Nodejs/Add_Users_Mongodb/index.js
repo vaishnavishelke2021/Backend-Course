@@ -14,6 +14,11 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// get users
+app.get("/users", (req, res) => {
+  res.render("users");
+});
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });

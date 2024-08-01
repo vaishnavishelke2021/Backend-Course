@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Users</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="w-full min-h-[100vh] bg-zinc-900 px-10 py-8 text-zinc-300">
+      <nav class="flex gap-x-7">
+        <a
+          class="text-zinc-400 pb-[3px] border-zinc-400 hover:text-zinc-200 transition-all duration-250"
+          href="/"
+          >Home</a
+        >
+        <a
+          class="text-zinc-300 pb-[3px] border-b border-zinc-300 hover:text-zinc-200 transition-all duration-250"
+          href="/users"
+          >All Users</a
+        >
+      </nav>
+      <h1 class="text-3xl mt-10 font-semibold">All Users</h1>
+
+      <div class="mt-10 flex gap-x-5">
+        <div class="w-[12%] p-2 rounded-md bg-zinc-800">
+          <div class="w-full h-[165px] rounded-md">
+            <img
+              class="w-full h-full object-cover rounded-md"
+              src="https://i.pinimg.com/736x/71/12/86/711286385391ab9bb5440b22420b9919.jpg"
+              alt=""
+            />
+          </div>
+          <h1 class="text-[1.2rem] font-semibold mt-[5px]">Ross Gellar</h1>
+          <p class="text-[15px] text-zinc-500">ross@gmail.com</p>
+
+          <div class="flex justify-between mt-3 items-center">
+            <a
+              class="text-green-600 italic text-sm pb-[3px] border-zinc-400 hover:text-green-700 transition-all duration-250"
+              href=""
+              >Edit User</a
+            >
+
+            <a
+              class="text-red-600 italic text-sm pb-[3px] border-zinc-400 hover:text-red-700 transition-all duration-250"
+              href=""
+              >Delete User</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
