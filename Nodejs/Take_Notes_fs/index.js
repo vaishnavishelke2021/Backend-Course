@@ -44,6 +44,17 @@ app.get("/edit/:filename", (req, res) => {
   res.render("edit", { filename: req.params.filename });
 });
 
+//edit post route
+app.post("/edit", (req, res) => {
+  fs.rename(
+    `./files/${req.body.previous}`,
+    `./files/${req.body.new.split(" ").join("")}.txt`,
+    (err) => {
+      res.redirect("/");
+    }
+  );
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
