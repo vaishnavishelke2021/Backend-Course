@@ -3,3 +3,8 @@
 body {
   font-family: "Ubuntu";
 }
+
+::selection{
+    background-color: rgb(205, 40, 25);
+    color: white;
+}
