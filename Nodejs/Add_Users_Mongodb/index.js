@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes
 app.get("/", (req, res) => {
-  res.send("hello");
+  res.render("index");
 });
 
 app.listen(PORT, () => {
