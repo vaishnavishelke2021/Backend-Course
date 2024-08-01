@@ -39,6 +39,11 @@ app.get("/files/:filename", (req, res) => {
   });
 });
 
+//edit file name
+app.get("/edit/:filename", (req, res) => {
+  res.render("edit", { filename: req.params.filename });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
