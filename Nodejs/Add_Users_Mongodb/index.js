@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const connectToMongoDB = require("./connection");
+const User = require("./models/userModel");
 
 const PORT = 3000;
 
@@ -19,8 +20,19 @@ app.get("/", (req, res) => {
 });
 
 // get users
-app.get("/users", (req, res) => {
-  res.render("users");
+app.get("/users", async (req, res) => {
+  const allUsers = await User.find();
+  res.render("users", { allUsers });
+});
+
+app.post("/create", async (req, res) => {
+  const { name, email, image } = req.body;
+  const newUser = await User.create({
+    name,
+    email,
+    image,
+  });
+  res.redirect("/users");
 });
 
 app.listen(PORT, () => {
