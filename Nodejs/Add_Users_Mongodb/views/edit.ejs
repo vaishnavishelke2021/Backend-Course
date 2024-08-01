@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add User</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="w-full min-h-[100vh] bg-zinc-900 px-10 py-8 text-zinc-300">
+      <nav class="flex gap-x-7">
+        <a
+          class="text-zinc-400 pb-[3px] border-zinc-400 hover:text-zinc-200 transition-all duration-250"
+          href="/"
+          >Home</a
+        >
+        <a
+          class="text-zinc-400 pb-[3px] border-zinc-400 hover:text-zinc-200 transition-all duration-250"
+          href="/users"
+          >All Users</a
+        >
+      </nav>
+      <h1 class="text-3xl mt-10 font-semibold">Update User</h1>
+
+      <form action="/update/<%= user._id  %>" method="post" class="mt-8">
+        <input
+          class="w-[40%] outline-none mt-3 bg-zinc-800 p-2 rounded-md text-zinc-200"
+          type="text"
+          name="name"
+          placeholder="Enter name here"
+          value="<%= user.name %>"
+        />
+        <br />
+
+        <input
+          class="w-[40%] outline-none mt-3 bg-zinc-800 p-2 rounded-md text-zinc-200"
+          type="email"
+          name="email"
+          placeholder="Enter email here"
+          value="<%= user.email  %>"
+        />
+        <br />
+
+        <input
+          class="w-[40%] outline-none mt-3 bg-zinc-800 p-2 rounded-md text-zinc-200"
+          type="text"
+          name="image"
+          placeholder="Enter image url here"
+          value="<%= user.image  %>"
+        />
+        <br />
+
+        <button
+          class="mt-4 bg-yellow-700 hover:bg-yellow-900 transition-all duration-250 px-4 py-1 rounded-md w-[40%]"
+          type="submit"
+        >
+          Update User
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
